@@ -118,15 +118,16 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="genLoan">Loan Product Focus</label>
-                    <select id="genLoan" required>
-                        <option value="">-- Choose Loan Type --</option>
-                        <option value="PL">Personal Loan (PL)</option>
-                        <option value="BL">Business Loan (BL)</option>
-                        <option value="HL">Home Loan (HL)</option>
-                        <option value="LAP">Loan Against Property (LAP)</option>
-                    </select>
-                </div>
+    <label>Select Loan Product Focus (Multiple choices allowed)</label>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; font-size: 14px;">
+        <label><input type="checkbox" name="loanType" value="PL"> Personal Loan (PL)</label>
+        <label><input type="checkbox" name="loanType" value="BL"> Business Loan (BL)</label>
+        <label><input type="checkbox" name="loanType" value="HL"> Home Loan (HL)</label>
+        <label><input type="checkbox" name="loanType" value="LAP"> Loan Against Property (LAP)</label>
+        <label><input type="checkbox" name="loanType" value="VL"> Vehicle Loan (VL)</label>
+        <label><input type="checkbox" name="loanType" value="EL"> Education Loan (EL)</label>
+    </div>
+</div>
                 <button type="submit" id="genBtn" class="btn">Generate Code</button>
             </form>
             <div id="genResult" class="resultBox"></div>
@@ -238,36 +239,45 @@
     }
 
     document.getElementById("codeForm").addEventListener("submit", async function(e) {
-        e.preventDefault();
-        const btn = document.getElementById("genBtn");
-        const resBox = document.getElementById("genResult");
-        const officialEmail = document.getElementById("genEmail").value;
-        const mobileNumber = document.getElementById("genMobile").value;
-        const bankName = document.getElementById("genBank").value;
-        const loanType = document.getElementById("genLoan").value;
+    e.preventDefault();
+    const btn = document.getElementById("genBtn");
+    const resBox = document.getElementById("genResult");
+    const officialEmail = document.getElementById("genEmail").value;
+    const mobileNumber = document.getElementById("genMobile").value;
+    const bankName = document.getElementById("genBank").value;
 
-        btn.disabled = true; btn.innerText = "Processing...";
-        resBox.style.display = "none";
-
-        try {
-            const response = await fetch(SCRIPT_URL, {
-                method: "POST",
-                body: JSON.stringify({ action: "generateCode", officialEmail, mobileNumber, bankName, loanType })
-            });
-            const result = await response.json();
-            if (result.status === "success") {
-                resBox.className = "resultBox success";
-                resBox.innerHTML = `<strong>Success!</strong> Code: <code>${result.vmwCode}</code><br><br>Company documents and your <strong>Login PIN</strong> have been dispatched to (${officialEmail}).`;
-                resBox.style.display = "block";
-            } else { throw new Error(result.message); }
-        } catch (err) {
-            resBox.className = "resultBox error-alert";
-            resBox.innerHTML = "Error processing request. Please try again.";
-            resBox.style.display = "block";
-        }
-        btn.disabled = false; btn.innerText = "Generate Code";
+    // Collect checked loan types
+    const selectedLoans = [];
+    document.querySelectorAll('input[name="loanType"]:checked').forEach(cb => {
+        selectedLoans.push(cb.value);
     });
 
+    if (selectedLoans.length === 0) {
+        alert("Please select at least one loan product.");
+        return;
+    }
+
+    btn.disabled = true; btn.innerText = "Processing...";
+    resBox.style.display = "none";
+
+    try {
+        const response = await fetch(SCRIPT_URL, {
+            method: "POST",
+            body: JSON.stringify({ action: "generateCode", officialEmail, mobileNumber, bankName, loanTypes: selectedLoans })
+        });
+        const result = await response.json();
+        if (result.status === "success") {
+            resBox.className = "resultBox success";
+            resBox.innerHTML = `<strong>Success!</strong> Codes generated.<br><br>Company documents and your <strong>Login PIN</strong> have been dispatched to (${officialEmail}).`;
+            resBox.style.display = "block";
+        } else { throw new Error(result.message); }
+    } catch (err) {
+        resBox.className = "resultBox error-alert";
+        resBox.innerHTML = "Error processing request. Please try again.";
+        resBox.style.display = "block";
+    }
+    btn.disabled = false; btn.innerText = "Generate Code";
+});
     document.getElementById("loginForm").addEventListener("submit", async function(e) {
         e.preventDefault();
         const btn = document.getElementById("loginBtn");
