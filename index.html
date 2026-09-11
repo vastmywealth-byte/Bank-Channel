@@ -3,86 +3,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank Channel CRM - VastMyWealth</title>
+    <title>Bank Channel CRM - VastMyWealth Digital</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .card { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 500px; box-sizing: border-box; }
-        
-        /* Landing Page Styles */
-        #landingView { text-align: left; }
-        h1 { color: #1a365d; font-size: 24px; margin-bottom: 10px; text-align: center; }
-        .subtitle { color: #4a5568; font-size: 14px; text-align: center; margin-bottom: 25px; }
-        .benefits-list { list-style-type: none; padding: 0; margin-bottom: 30px; }
-        .benefits-list li { margin-bottom: 12px; font-size: 14px; color: #2d3748; display: flex; align-items: flex-start; }
-        .benefits-list li::before { content: "✔"; color: #38a169; font-weight: bold; margin-right: 10px; }
-        
-        /* Portal Form Styles */
-        #portalView { display: none; }
-        h2 { color: #1a365d; margin-bottom: 20px; font-size: 20px; text-align: center; }
-        label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; font-size: 14px; }
-        input, select { width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        
+        :root {
+            --primary: #0f172a;
+            --accent: #2563eb;
+            --accent-light: #eff6ff;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --bg-body: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 520px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 40px 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Branding / Logo Area */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .logo-img {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+            margin-bottom: 12px;
+            border: 2px solid #fff;
+        }
+
+        .brand-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+            margin: 0;
+        }
+
+        .brand-subtitle {
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* Company Intro snippet */
+        .intro-box {
+            background-color: var(--accent-light);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #1e3a8a;
+            margin-bottom: 24px;
+            border-left: 4px solid var(--accent);
+        }
+
+        /* Landing View */
+        h1 {
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .benefits-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-main);
+            background: #fff;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #f1f5f9;
+        }
+
+        .benefit-icon {
+            background: #dbeafe;
+            color: var(--accent);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Portal Form View */
+        #portalView {
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 13px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 14px;
+            background-color: #fff;
+            color: var(--text-main);
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
         /* Buttons */
-        .btn-primary { background-color: #2b6cb0; color: white; border: none; padding: 12px; width: 100%; border-radius: 4px; font-size: 16px; cursor: pointer; font-weight: bold; }
-        .btn-primary:hover { background-color: #2c5282; }
-        .back-link { display: block; text-align: center; margin-top: 15px; color: #718096; font-size: 13px; cursor: pointer; text-decoration: underline; }
+        .btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: var(--text-muted);
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+        }
+
+        /* Result Alerts */
+        #resultBox {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+            display: none;
+            line-height: 1.5;
+        }
+
+        .success {
+            background-color: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
         
-        /* Messages */
-        #resultBox { margin-top: 15px; padding: 15px; border-radius: 4px; text-align: center; font-size: 14px; display: none; line-height: 1.5; }
-        .success { background-color: #c6f6d5; color: #22543d; border: 1px solid #9ae6b4; }
+        .error-alert {
+            background-color: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <!-- VIEW 1: LANDING PAGE -->
-    <div id="landingView">
-        <h1>Bank Channel CRM</h1>
-        <div class="subtitle">Powered by VastMyWealth Ecosystem</div>
-        
-        <ul class="benefits-list">
-            <li><strong>Instant Code Generation:</strong> Get authorized tracking and partner codes instantly mapped to your official profile.</li>
-            <li><strong>Smart Multi-Tier Routing:</strong> Seamlessly route policy-rejected files to alternative lenders or backup networks without losing visibility.</li>
-            <li><strong>Complete Privacy:</strong> Maintain absolute control over your internal lender RM associations and downline channel partners.</li>
-            <li><strong>Centralized Dashboard:</strong> Track business logs, application lifecycles, and approvals in one unified workflow.</li>
-        </ul>
+<div class="container">
+    <div class="card">
+        <!-- BRANDING HEADER (Included on both views for identity consistency) -->
+        <div class="brand-header">
+            <!-- Replace 'logo.png' with your actual uploaded logo file path/name -->
+            <img src="1000563427.jpg" alt="VastMyWealth Logo" class="logo-img">
+            <h2 class="brand-title">Bank Channel CRM</h2>
+            <div class="brand-subtitle">VastMyWealth Digital</div>
+        </div>
 
-        <button class="btn-primary" onclick="showPortal()">Start Portal</button>
-    </div>
+        <!-- VIEW 1: PROFESSIONAL LANDING PAGE -->
+        <div id="landingView">
+            <div class="intro-box">
+                Vast Wealth Advisors is an independent financial firm integrating structured wealth creation, real estate advisory, digital commerce via KuickKart, and multi-sector execution. We empower institutional channel partners to scale performance effortlessly.
+            </div>
 
-    <!-- VIEW 2: CODE GENERATION PORTAL -->
-    <div id="portalView">
-        <h2>Generate Bank Channel Code</h2>
-        
-        <form id="codeForm">
-            <label for="officialEmail">Official Bank Email ID</label>
-            <input type="email" id="officialEmail" required placeholder="name@bankdomain.com">
+            <h1>Platform Highlights & Growth Engine</h1>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">📈</div>
+                    <div><strong>Scale Sales & Payouts:</strong> Maximize institutional loan conversions with structured tracking and automated code allotments.</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">👥</div>
+                    <div><strong>Build & Manage Teams:</strong> Seamlessly onboard downline channel partners and scale your distribution network.</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">📊</div>
+                    <div><strong>Centralized Tracking:</strong> Monitor your entire business pipeline, application statuses, and lifecycles in one unified system.</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔄</div>
+                    <div><strong>Smart Rejection Fallbacks:</strong> Efficiently handle policy-rejected files with controlled alternative routing.</div>
+                </div>
+            </div>
 
-            <label for="bankName">Select Bank</label>
-            <select id="bankName" required>
-                <option value="">-- Choose Bank --</option>
-                <option value="HDFC Bank">HDFC Bank</option>
-                <option value="ICICI Bank">ICICI Bank</option>
-                <option value="Axis Bank">Axis Bank</option>
-                <option value="Kotak Bank">Kotak Bank</option>
-                <option value="Godrej Capital">Godrej Capital</option>
-                <!-- Add more banks here from your master list -->
-            </select>
+            <button class="btn" onclick="showPortal()">Get Started / Generate Code</button>
+        </div>
 
-            <label for="loanType">Loan Type Focus</label>
-            <select id="loanType" required>
-                <option value="">-- Choose Loan Type --</option>
-                <option value="PL">Personal Loan (PL)</option>
-                <option value="BL">Business Loan (BL)</option>
-                <option value="HL">Home Loan (HL)</option>
-                <option value="LAP">Loan Against Property (LAP)</option>
-            </select>
+        <!-- VIEW 2: CODE GENERATION PORTAL -->
+        <div id="portalView">
+            <form id="codeForm">
+                <div class="form-group">
+                    <label for="officialEmail">Official Bank Email ID</label>
+                    <input type="email" id="officialEmail" required placeholder="name@bankdomain.com">
+                </div>
 
-            <button type="submit" id="submitBtn" class="btn-primary">Generate Code</button>
-        </form>
+                <div class="form-group">
+                    <label for="bankName">Select Bank</label>
+                    <select id="bankName" required>
+                        <option value="">-- Choose Banking Partner --</option>
+                        <option value="HDFC Bank">HDFC Bank</option>
+                        <option value="ICICI Bank">ICICI Bank</option>
+                        <option value="Axis Bank">Axis Bank</option>
+                        <option value="Kotak Bank">Kotak Bank</option>
+                        <option value="Godrej Capital">Godrej Capital</option>
+                        <!-- Expand master bank list here -->
+                    </select>
+                </div>
 
-        <div id="resultBox"></div>
-        <span class="back-link" onclick="showLanding()">← Back to Overview</span>
+                <div class="form-group">
+                    <label for="loanType">Loan Product Focus</label>
+                    <select id="loanType" required>
+                        <option value="">-- Choose Loan Type --</option>
+                        <option value="PL">Personal Loan (PL)</option>
+                        <option value="BL">Business Loan (BL)</option>
+                        <option value="HL">Home Loan (HL)</option>
+                        <option value="LAP">Loan Against Property (LAP)</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn">Generate Code</button>
+            </form>
+
+            <div id="resultBox"></div>
+            <a class="back-link" onclick="showLanding()">← Back to Overview</a>
+        </div>
     </div>
 </div>
 
@@ -116,12 +335,11 @@
         resultBox.style.display = "none";
 
         try {
-            // Trigger code generation & document dispatch via Apps Script
             const response = await fetch(SCRIPT_URL, {
                 method: "POST",
                 body: JSON.stringify({ 
                     action: "generateCode", 
-                    bankerId: officialEmail, // Using official email as the unique identifier key
+                    bankerId: officialEmail, 
                     officialEmail: officialEmail, 
                     bankName: bankName, 
                     loanType: loanType 
@@ -139,10 +357,8 @@
                 throw new Error(result.message || "Unknown error");
             }
         } catch (err) {
-            resultBox.className = "resultBox";
-            resultBox.style.backgroundColor = "#fed7d7";
-            resultBox.style.color = "#9b2c2c";
-            resultBox.innerHTML = "Error processing request. Please try again.";
+            resultBox.className = "resultBox error-alert";
+            resultBox.innerHTML = "Error processing request. Please check connection and try again.";
             resultBox.style.display = "block";
             btn.disabled = false;
             btn.innerText = "Generate Code";
