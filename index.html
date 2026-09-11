@@ -293,13 +293,9 @@
                 document.getElementById("lockedBankBadge").innerText = `Locked Institutional Bank: ${lockedBankName}`;
                 document.getElementById("loanTypeInput").value = lockedLoanType;
 
-                if (result.unlockedPartners === true) {
-                    document.getElementById("partnerUnlockSection").style.display = "block";
-                    document.getElementById("lockedPartnerNotice").style.display = "none";
-                } else {
-                    document.getElementById("partnerUnlockSection").style.display = "none";
-                    document.getElementById("lockedPartnerNotice").style.display = "block";
-                }
+                // Always show partner recruitment section for testing
+document.getElementById("partnerUnlockSection").style.display = "block";
+document.getElementById("lockedPartnerNotice").style.display = "none";
 
                 loadBusinessLogs();
                 switchView('dashboardView');
