@@ -16,220 +16,33 @@
             --border-color: #e2e8f0;
         }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 650px;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 40px 35px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--border-color);
-        }
-
-        .brand-header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .logo-img {
-            width: 72px;
-            height: 72px;
-            object-fit: contain;
-            border-radius: 50%;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
-            margin-bottom: 12px;
-            border: 2px solid #fff;
-        }
-
-        .brand-title {
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--primary);
-            margin: 0;
-        }
-
-        .brand-subtitle {
-            font-size: 13px;
-            color: var(--accent);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 4px;
-        }
-
-        .intro-box {
-            background-color: var(--accent-light);
-            border-radius: 8px;
-            padding: 14px 16px;
-            font-size: 13px;
-            line-height: 1.5;
-            color: #1e3a8a;
-            margin-bottom: 24px;
-            border-left: 4px solid var(--accent);
-        }
-
-        h1, h2 {
-            font-size: 18px;
-            color: var(--primary);
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-
-        .benefits-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-
-        .benefit-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            font-size: 14px;
-            color: var(--text-main);
-            background: #fff;
-            padding: 10px 12px;
-            border-radius: 8px;
-            border: 1px solid #f1f5f9;
-        }
-
-        .benefit-icon {
-            background: #dbeafe;
-            color: var(--accent);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 13px;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 14px;
-            background-color: #fff;
-            color: var(--text-main);
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .btn {
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 14px;
-            width: 100%;
-            border-radius: 8px;
-            font-size: 15px;
-            cursor: pointer;
-            font-weight: 600;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-            margin-top: 5px;
-        }
-
-        .btn:hover {
-            background-color: #1d4ed8;
-        }
-
-        .btn-secondary {
-            background-color: #e2e8f0;
-            color: var(--primary);
-            margin-top: 10px;
-        }
-        .btn-secondary:hover {
-            background-color: #cbd5e0;
-        }
-
-        .nav-links {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-            font-size: 13px;
-        }
-
-        .link-btn {
-            color: var(--accent);
-            cursor: pointer;
-            text-decoration: underline;
-            font-weight: 500;
-            background: none;
-            border: none;
-            padding: 0;
-        }
-
-        .section-box {
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .locked-badge {
-            background: #e2e8f0;
-            color: #475569;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        .resultBox {
-            margin-top: 15px;
-            padding: 14px;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 14px;
-            display: none;
-            line-height: 1.5;
-        }
-
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { width: 100%; max-width: 650px; padding: 20px; box-sizing: border-box; }
+        .card { background: var(--card-bg); padding: 40px 35px; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); border: 1px solid var(--border-color); }
+        .brand-header { text-align: center; margin-bottom: 24px; }
+        .logo-img { width: 72px; height: 72px; object-fit: contain; border-radius: 50%; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15); margin-bottom: 12px; border: 2px solid #fff; }
+        .brand-title { font-size: 22px; font-weight: 800; color: var(--primary); margin: 0; }
+        .brand-subtitle { font-size: 13px; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+        .intro-box { background-color: var(--accent-light); border-radius: 8px; padding: 14px 16px; font-size: 13px; line-height: 1.5; color: #1e3a8a; margin-bottom: 24px; border-left: 4px solid var(--accent); }
+        h1, h2 { font-size: 18px; color: var(--primary); margin-bottom: 12px; font-weight: 700; }
+        .benefits-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
+        .benefit-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--text-main); background: #fff; padding: 10px 12px; border-radius: 8px; border: 1px solid #f1f5f9; }
+        .benefit-icon { background: #dbeafe; color: var(--accent); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; flex-shrink: 0; }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; color: var(--primary); font-size: 13px; }
+        input, select { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; box-sizing: border-box; font-size: 14px; background-color: #fff; color: var(--text-main); }
+        input:focus, select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+        .btn { background-color: var(--accent); color: white; border: none; padding: 14px; width: 100%; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 600; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); margin-top: 5px; }
+        .btn:hover { background-color: #1d4ed8; }
+        .btn-secondary { background-color: #e2e8f0; color: var(--primary); margin-top: 10px; }
+        .btn-secondary:hover { background-color: #cbd5e0; }
+        .nav-links { display: flex; justify-content: space-between; margin-top: 20px; font-size: 13px; }
+        .link-btn { color: var(--accent); cursor: pointer; text-decoration: underline; font-weight: 500; background: none; border: none; padding: 0; }
+        .section-box { background: #f8fafc; border: 1px solid var(--border-color); padding: 20px; border-radius: 10px; margin-top: 20px; }
+        .locked-badge { background: #e2e8f0; color: #475569; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 15px; }
+        .resultBox { margin-top: 15px; padding: 14px; border-radius: 8px; text-align: center; font-size: 14px; display: none; line-height: 1.5; }
         .success { background-color: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
         .error-alert { background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
-
         .view { display: none; }
         .view.active { display: block; }
     </style>
@@ -239,7 +52,6 @@
 <div class="container">
     <div class="card">
         <div class="brand-header">
-            <!-- Ensure your uploaded image file in GitHub repo is named '1000563427.jpg' -->
             <img src="1000563427.jpg" alt="VastMyWealth Logo" class="logo-img" onerror="this.style.display='none'">
             <h2 class="brand-title">Bank Channel CRM</h2>
             <div class="brand-subtitle">VastMyWealth Digital</div>
@@ -285,6 +97,10 @@
                     <input type="email" id="genEmail" required placeholder="name@bankdomain.com">
                 </div>
                 <div class="form-group">
+                    <label for="genMobile">Mobile Number</label>
+                    <input type="tel" id="genMobile" required placeholder="9876543210" pattern="[0-9]{10}">
+                </div>
+                <div class="form-group">
                     <label for="genBank">Select Bank</label>
                     <select id="genBank" required>
                         <option value="">-- Choose Banking Partner --</option>
@@ -314,13 +130,17 @@
             </div>
         </div>
 
-        <!-- VIEW 3: BANKER LOGIN VIEW -->
+        <!-- VIEW 3: BANKER LOGIN VIEW (Mobile Number & PIN) -->
         <div id="loginView" class="view">
             <h2>Banker Portal Login</h2>
             <form id="loginForm">
                 <div class="form-group">
-                    <label for="loginEmail">Enter Your Official Bank Email ID</label>
-                    <input type="email" id="loginEmail" required placeholder="name@bankdomain.com">
+                    <label for="loginMobile">Mobile Number</label>
+                    <input type="tel" id="loginMobile" required placeholder="Enter your registered mobile">
+                </div>
+                <div class="form-group">
+                    <label for="loginPin">4-Digit PIN (Sent to your email)</label>
+                    <input type="password" id="loginPin" required maxlength="4" placeholder="••••">
                 </div>
                 <button type="submit" id="loginBtn" class="btn">Access Dashboard</button>
             </form>
@@ -394,6 +214,7 @@
         const btn = document.getElementById("genBtn");
         const resBox = document.getElementById("genResult");
         const officialEmail = document.getElementById("genEmail").value;
+        const mobileNumber = document.getElementById("genMobile").value;
         const bankName = document.getElementById("genBank").value;
         const loanType = document.getElementById("genLoan").value;
 
@@ -403,12 +224,12 @@
         try {
             const response = await fetch(SCRIPT_URL, {
                 method: "POST",
-                body: JSON.stringify({ action: "generateCode", officialEmail, bankName, loanType })
+                body: JSON.stringify({ action: "generateCode", officialEmail, mobileNumber, bankName, loanType })
             });
             const result = await response.json();
             if (result.status === "success") {
                 resBox.className = "resultBox success";
-                resBox.innerHTML = `<strong>Success!</strong> Code: <code>${result.vmwCode}</code><br><br>Company documents and details dispatched to your official ID (${officialEmail}).`;
+                resBox.innerHTML = `<strong>Success!</strong> Code: <code>${result.vmwCode}</code><br><br>Company documents and your <strong>Login PIN</strong> have been dispatched to (${officialEmail}).`;
                 resBox.style.display = "block";
             } else { throw new Error(result.message); }
         } catch (err) {
@@ -423,7 +244,8 @@
         e.preventDefault();
         const btn = document.getElementById("loginBtn");
         const resBox = document.getElementById("loginResult");
-        const officialEmail = document.getElementById("loginEmail").value;
+        const mobileNumber = document.getElementById("loginMobile").value;
+        const pin = document.getElementById("loginPin").value;
 
         btn.disabled = true; btn.innerText = "Verifying...";
         resBox.style.display = "none";
@@ -431,15 +253,15 @@
         try {
             const response = await fetch(SCRIPT_URL, {
                 method: "POST",
-                body: JSON.stringify({ action: "verifyBanker", officialEmail })
+                body: JSON.stringify({ action: "verifyBanker", mobileNumber, pin })
             });
             const result = await response.json();
             if (result.status === "success") {
-                currentBankerEmail = officialEmail;
+                currentBankerEmail = result.bankerEmail;
                 lockedBankName = result.lockedBank;
                 lockedLoanType = result.loanType;
 
-                document.getElementById("dashWelcome").innerText = `Welcome, ${officialEmail.split('@')[0]}`;
+                document.getElementById("dashWelcome").innerText = `Welcome, Bank Partner`;
                 document.getElementById("lockedBankBadge").innerText = `Locked Institutional Bank: ${lockedBankName}`;
                 document.getElementById("loanTypeInput").value = lockedLoanType;
 
@@ -454,7 +276,7 @@
                 switchView('dashboardView');
             } else {
                 resBox.className = "resultBox error-alert";
-                resBox.innerHTML = result.message || "Email not registered.";
+                resBox.innerHTML = result.message || "Invalid credentials.";
                 resBox.style.display = "block";
             }
         } catch (err) {
