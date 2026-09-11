@@ -30,7 +30,7 @@
 
         .container {
             width: 100%;
-            max-width: 520px;
+            max-width: 650px;
             padding: 20px;
             box-sizing: border-box;
         }
@@ -39,11 +39,10 @@
             background: var(--card-bg);
             padding: 40px 35px;
             border-radius: 16px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
             border: 1px solid var(--border-color);
         }
 
-        /* Branding / Logo Area */
         .brand-header {
             text-align: center;
             margin-bottom: 24px;
@@ -63,7 +62,6 @@
             font-size: 22px;
             font-weight: 800;
             color: var(--primary);
-            letter-spacing: -0.5px;
             margin: 0;
         }
 
@@ -76,7 +74,6 @@
             margin-top: 4px;
         }
 
-        /* Company Intro snippet */
         .intro-box {
             background-color: var(--accent-light);
             border-radius: 8px;
@@ -88,8 +85,7 @@
             border-left: 4px solid var(--accent);
         }
 
-        /* Landing View */
-        h1 {
+        h1, h2 {
             font-size: 18px;
             color: var(--primary);
             margin-bottom: 12px;
@@ -100,7 +96,7 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .benefit-item {
@@ -129,13 +125,8 @@
             flex-shrink: 0;
         }
 
-        /* Portal Form View */
-        #portalView {
-            display: none;
-        }
-
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         label {
@@ -155,7 +146,6 @@
             font-size: 14px;
             background-color: #fff;
             color: var(--text-main);
-            transition: all 0.2s ease;
         }
 
         input:focus, select:focus {
@@ -164,7 +154,6 @@
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
-        /* Buttons */
         .btn {
             background-color: var(--accent);
             color: white;
@@ -175,33 +164,62 @@
             font-size: 15px;
             cursor: pointer;
             font-weight: 600;
-            transition: background-color 0.2s;
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            margin-top: 5px;
         }
 
         .btn:hover {
             background-color: #1d4ed8;
         }
 
-        .back-link {
-            display: block;
-            text-align: center;
-            margin-top: 18px;
-            color: var(--text-muted);
-            font-size: 13px;
-            cursor: pointer;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .back-link:hover {
+        .btn-secondary {
+            background-color: #e2e8f0;
             color: var(--primary);
+            margin-top: 10px;
+        }
+        .btn-secondary:hover {
+            background-color: #cbd5e0;
         }
 
-        /* Result Alerts */
-        #resultBox {
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
             margin-top: 20px;
-            padding: 16px;
+            font-size: 13px;
+        }
+
+        .link-btn {
+            color: var(--accent);
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: 500;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .section-box {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .locked-badge {
+            background: #e2e8f0;
+            color: #475569;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        #resultBox {
+            margin-top: 15px;
+            padding: 14px;
             border-radius: 8px;
             text-align: center;
             font-size: 14px;
@@ -209,33 +227,26 @@
             line-height: 1.5;
         }
 
-        .success {
-            background-color: #f0fdf4;
-            color: #166534;
-            border: 1px solid #bbf7d0;
-        }
-        
-        .error-alert {
-            background-color: #fef2f2;
-            color: #991b1b;
-            border: 1px solid #fecaca;
-        }
+        .success { background-color: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+        .error-alert { background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+        /* Hide views dynamically */
+        .view { display: none; }
+        .view.active { display: block; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="card">
-        <!-- BRANDING HEADER (Included on both views for identity consistency) -->
         <div class="brand-header">
-            <!-- Replace 'logo.png' with your actual uploaded logo file path/name -->
             <img src="1000563427.jpg" alt="VastMyWealth Logo" class="logo-img">
             <h2 class="brand-title">Bank Channel CRM</h2>
             <div class="brand-subtitle">VastMyWealth Digital</div>
         </div>
 
-        <!-- VIEW 1: PROFESSIONAL LANDING PAGE -->
-        <div id="landingView">
+        <!-- VIEW 1: LANDING PAGE -->
+        <div id="landingView" class="view active">
             <div class="intro-box">
                 Vast Wealth Advisors is an independent financial firm integrating structured wealth creation, real estate advisory, digital commerce via KuickKart, and multi-sector execution. We empower institutional channel partners to scale performance effortlessly.
             </div>
@@ -249,45 +260,44 @@
                 </div>
                 <div class="benefit-item">
                     <div class="benefit-icon">👥</div>
-                    <div><strong>Build & Manage Teams:</strong> Seamlessly onboard downline channel partners and scale your distribution network.</div>
+                    <div><strong>Build & Manage Teams:</strong> Unlock channel partner recruitment after your first successful disbursement.</div>
                 </div>
                 <div class="benefit-item">
                     <div class="benefit-icon">📊</div>
-                    <div><strong>Centralized Tracking:</strong> Monitor your entire business pipeline, application statuses, and lifecycles in one unified system.</div>
+                    <div><strong>Centralized Tracking:</strong> Monitor your entire business pipeline and application lifecycles in one unified system.</div>
                 </div>
                 <div class="benefit-item">
                     <div class="benefit-icon">🔄</div>
-                    <div><strong>Smart Rejection Fallbacks:</strong> Efficiently handle policy-rejected files with controlled alternative routing.</div>
+                    <div><strong>Smart Rejection Fallbacks:</strong> Handle policy-rejected files with controlled alternative lender routing.</div>
                 </div>
             </div>
 
-            <button class="btn" onclick="showPortal()">Get Started / Generate Code</button>
+            <button class="btn" onclick="switchView('portalView')">Generate Code / Register</button>
+            <button class="btn btn-secondary" onclick="switchView('loginView')">Already have a code? Login</button>
         </div>
 
         <!-- VIEW 2: CODE GENERATION PORTAL -->
-        <div id="portalView">
+        <div id="portalView" class="view">
+            <h2>Generate Bank Channel Code</h2>
             <form id="codeForm">
                 <div class="form-group">
-                    <label for="officialEmail">Official Bank Email ID</label>
-                    <input type="email" id="officialEmail" required placeholder="name@bankdomain.com">
+                    <label for="genEmail">Official Bank Email ID</label>
+                    <input type="email" id="genEmail" required placeholder="name@bankdomain.com">
                 </div>
-
                 <div class="form-group">
-                    <label for="bankName">Select Bank</label>
-                    <select id="bankName" required>
+                    <label for="genBank">Select Bank</label>
+                    <select id="genBank" required>
                         <option value="">-- Choose Banking Partner --</option>
                         <option value="HDFC Bank">HDFC Bank</option>
                         <option value="ICICI Bank">ICICI Bank</option>
                         <option value="Axis Bank">Axis Bank</option>
                         <option value="Kotak Bank">Kotak Bank</option>
                         <option value="Godrej Capital">Godrej Capital</option>
-                        <!-- Expand master bank list here -->
                     </select>
                 </div>
-
                 <div class="form-group">
-                    <label for="loanType">Loan Product Focus</label>
-                    <select id="loanType" required>
+                    <label for="genLoan">Loan Product Focus</label>
+                    <select id="genLoan" required>
                         <option value="">-- Choose Loan Type --</option>
                         <option value="PL">Personal Loan (PL)</option>
                         <option value="BL">Business Loan (BL)</option>
@@ -295,74 +305,242 @@
                         <option value="LAP">Loan Against Property (LAP)</option>
                     </select>
                 </div>
-
-                <button type="submit" id="submitBtn" class="btn">Generate Code</button>
+                <button type="submit" id="genBtn" class="btn">Generate Code</button>
             </form>
-
-            <div id="resultBox"></div>
-            <a class="back-link" onclick="showLanding()">← Back to Overview</a>
+            <div id="genResult" class="resultBox"></div>
+            <div class="nav-links">
+                <button class="link-btn" onclick="switchView('landingView')">← Back to Overview</button>
+                <button class="link-btn" onclick="switchView('loginView')">Go to Login</button>
+            </div>
         </div>
+
+        <!-- VIEW 3: BANKER LOGIN VIEW -->
+        <div id="loginView" class="view">
+            <h2>Banker Portal Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Enter Your Official Bank Email ID</label>
+                    <input type="email" id="loginEmail" required placeholder="name@bankdomain.com">
+                </div>
+                <button type="submit" id="loginBtn" class="btn">Access Dashboard</button>
+            </form>
+            <div id="loginResult" class="resultBox"></div>
+            <div class="nav-links">
+                <button class="link-btn" onclick="switchView('landingView')">← Back to Overview</button>
+                <button class="link-btn" onclick="switchView('portalView')">Need a Code?</button>
+            </div>
+        </div>
+
+        <!-- VIEW 4: BANKER DASHBOARD (Locked Bank + Log Business + Partner Unlock) -->
+        <div id="dashboardView" class="view">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h2 id="dashWelcome" style="margin:0;">Banker Dashboard</h2>
+                <button class="link-btn" onclick="switchView('landingView')" style="color: #ef4444;">Logout</button>
+            </div>
+            
+            <div class="locked-badge" id="lockedBankBadge">Locked Bank: Loading...</div>
+
+            <!-- Log Business Form (Bank is automatically locked to banker's institution) -->
+            <div class="section-box">
+                <h3>Log New Business</h3>
+                <form id="businessForm">
+                    <div class="form-group">
+                        <label for="customerName">Customer Full Name</label>
+                        <input type="text" id="customerName" required placeholder="Enter customer name">
+                    </div>
+                    <div class="form-group">
+                        <label for="loanTypeInput">Loan Type</label>
+                        <input type="text" id="loanTypeInput" readonly style="background:#e2e8f0; cursor:not-allowed;">
+                    </div>
+                    <button type="submit" id="busBtn" class="btn">Submit Business File</button>
+                </form>
+                <div id="busResult" class="resultBox"></div>
+            </div>
+
+            <!-- Partner Recruitment Section (Unlocked only after 1st disbursement) -->
+            <div id="partnerUnlockSection" class="section-box" style="display:none; border-color: #3b82f6; background:#eff6ff;">
+                <h3 style="color:#1d4ed8; margin-top:0;">🔓 Channel Partner Recruitment Unlocked</h3>
+                <p style="font-size:13px; color:#1e40af;">You have achieved your disbursement milestone. You can now recruit downline channel partners (Contact details remain hidden until they submit banking info).</p>
+                <form id="partnerForm">
+                    <div class="form-group">
+                        <label for="partnerName">Channel Partner Name</label>
+                        <input type="text" id="partnerName" required placeholder="Enter partner name">
+                    </div>
+                    <button type="submit" id="partBtn" class="btn" style="background:#2563eb;">Send Onboarding & Consent Invitation</button>
+                </form>
+                <div id="partResult" class="resultBox"></div>
+            </div>
+
+            <div id="lockedPartnerNotice" class="section-box" style="background:#f1f5f9; text-align:center;">
+                <p style="font-size:13px; color:#64748b; margin:0;">🔒 <strong>Channel Partner Recruitment:</strong> Complete your first successful loan disbursement to unlock partner recruitment capabilities.</p>
+            </div>
+        </div>
+
     </div>
 </div>
 
 <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbytDsEm2Z1_JD1Gpn-faYSdF1lVMIXxotMQ3qcB4P_7QIZC3juK8PZuhSTinkdlhASdEA/exec";
+    let currentBankerEmail = "";
+    let lockedBankName = "";
+    let lockedLoanType = "";
 
-    function showPortal() {
-        document.getElementById("landingView").style.display = "none";
-        document.getElementById("portalView").style.display = "block";
+    function switchView(viewId) {
+        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+        document.getElementById(viewId).classList.add('active');
+        document.querySelectorAll('.resultBox').forEach(b => { b.style.display = 'none'; b.innerHTML = ''; });
     }
 
-    function showLanding() {
-        document.getElementById("landingView").style.display = "block";
-        document.getElementById("portalView").style.display = "none";
-        document.getElementById("resultBox").style.display = "none";
-        document.getElementById("codeForm").reset();
-    }
-
+    // 1. Generate Code Handler
     document.getElementById("codeForm").addEventListener("submit", async function(e) {
         e.preventDefault();
-        
-        const btn = document.getElementById("submitBtn");
-        const resultBox = document.getElementById("resultBox");
-        
-        const officialEmail = document.getElementById("officialEmail").value;
-        const bankName = document.getElementById("bankName").value;
-        const loanType = document.getElementById("loanType").value;
-        
-        btn.disabled = true;
-        btn.innerText = "Processing...";
-        resultBox.style.display = "none";
+        const btn = document.getElementById("genBtn");
+        const resBox = document.getElementById("genResult");
+        const officialEmail = document.getElementById("genEmail").value;
+        const bankName = document.getElementById("genBank").value;
+        const loanType = document.getElementById("genLoan").value;
+
+        btn.disabled = true; btn.innerText = "Processing...";
+        resBox.style.display = "none";
+
+        try {
+            const response = await fetch(SCRIPT_URL, {
+                method: "POST",
+                body: JSON.stringify({ action: "generateCode", officialEmail, bankName, loanType })
+            });
+            const result = await response.json();
+            if (result.status === "success") {
+                resBox.className = "resultBox success";
+                resBox.innerHTML = `<strong>Success!</strong> Code: <code>${result.vmwCode}</code><br><br>Company documents and details dispatched to your official ID (${officialEmail}).`;
+                resBox.style.display = "block";
+            } else { throw new Error(result.message); }
+        } catch (err) {
+            resBox.className = "resultBox error-alert";
+            resBox.innerHTML = "Error processing request. Please try again.";
+            resBox.style.display = "block";
+        }
+        btn.disabled = false; btn.innerText = "Generate Code";
+    });
+
+    // 2. Banker Login & Dashboard Loader Handler
+    document.getElementById("loginForm").addEventListener("submit", async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById("loginBtn");
+        const resBox = document.getElementById("loginResult");
+        const officialEmail = document.getElementById("loginEmail").value;
+
+        btn.disabled = true; btn.innerText = "Verifying...";
+        resBox.style.display = "none";
+
+        try {
+            const response = await fetch(SCRIPT_URL, {
+                method: "POST",
+                body: JSON.stringify({ action: "verifyBanker", officialEmail })
+            });
+            const result = await response.json();
+            if (result.status === "success") {
+                currentBankerEmail = officialEmail;
+                lockedBankName = result.lockedBank;
+                lockedLoanType = result.loanType;
+
+                // Populate Dashboard UI
+                document.getElementById("dashWelcome").innerText = `Welcome, ${officialEmail.split('@')[0]}`;
+                document.getElementById("lockedBankBadge").innerText = `Locked Institutional Bank: ${lockedBankName}`;
+                document.getElementById("loanTypeInput").value = lockedLoanType;
+
+                // Toggle Partner Unlock state based on backend milestone check
+                if (result.unlockedPartners === true) {
+                    document.getElementById("partnerUnlockSection").style.display = "block";
+                    document.getElementById("lockedPartnerNotice").style.display = "none";
+                } else {
+                    document.getElementById("partnerUnlockSection").style.display = "none";
+                    document.getElementById("lockedPartnerNotice").style.display = "block";
+                }
+
+                switchView('dashboardView');
+            } else {
+                resBox.className = "resultBox error-alert";
+                resBox.innerHTML = result.message || "Email not registered.";
+                resBox.style.display = "block";
+            }
+        } catch (err) {
+            resBox.className = "resultBox error-alert";
+            resBox.innerHTML = "Server connection error. Please try again.";
+            resBox.style.display = "block";
+        }
+        btn.disabled = false; btn.innerText = "Access Dashboard";
+    });
+
+    // 3. Log Business Handler
+    document.getElementById("businessForm").addEventListener("submit", async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById("busBtn");
+        const resBox = document.getElementById("busResult");
+        const customerName = document.getElementById("customerName").value;
+
+        btn.disabled = true; btn.innerText = "Logging File...";
+        resBox.style.display = "none";
 
         try {
             const response = await fetch(SCRIPT_URL, {
                 method: "POST",
                 body: JSON.stringify({ 
-                    action: "generateCode", 
-                    bankerId: officialEmail, 
-                    officialEmail: officialEmail, 
-                    bankName: bankName, 
-                    loanType: loanType 
+                    action: "logBusiness", 
+                    bankerEmail: currentBankerEmail, 
+                    bankName: lockedBankName, 
+                    loanType: lockedLoanType, 
+                    customerName: customerName,
+                    vmwCode: "AUTO" 
                 })
             });
             const result = await response.json();
-
             if (result.status === "success") {
-                resultBox.className = "resultBox success";
-                resultBox.innerHTML = `<strong>Success!</strong> Code Generated: <code>${result.vmwCode}</code><br><br>We have shared our company documents and code details to your official ID (${officialEmail}).`;
-                resultBox.style.display = "block";
-                btn.disabled = false;
-                btn.innerText = "Generate Code";
-            } else {
-                throw new Error(result.message || "Unknown error");
-            }
+                resBox.className = "resultBox success";
+                resBox.innerHTML = `Business successfully logged! Log ID: <strong>${result.logId}</strong>`;
+                resBox.style.display = "block";
+                document.getElementById("businessForm").reset();
+                document.getElementById("loanTypeInput").value = lockedLoanType;
+            } else { throw new Error(result.message); }
         } catch (err) {
-            resultBox.className = "resultBox error-alert";
-            resultBox.innerHTML = "Error processing request. Please check connection and try again.";
-            resultBox.style.display = "block";
-            btn.disabled = false;
-            btn.innerText = "Generate Code";
+            resBox.className = "resultBox error-alert";
+            resBox.innerHTML = "Failed to log business. Try again.";
+            resBox.style.display = "block";
         }
+        btn.disabled = false; btn.innerText = "Submit Business File";
+    });
+
+    // 4. Privacy-First Partner Recruitment Handler
+    document.getElementById("partnerForm").addEventListener("submit", async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById("partBtn");
+        const resBox = document.getElementById("partResult");
+        const partnerName = document.getElementById("partnerName").value;
+
+        btn.disabled = true; btn.innerText = "Sending Invitation...";
+        resBox.style.display = "none";
+
+        try {
+            const response = await fetch(SCRIPT_URL, {
+                method: "POST",
+                body: JSON.stringify({ 
+                    action: "recruitPartner", 
+                    parentBankerEmail: currentBankerEmail, 
+                    partnerName: partnerName 
+                })
+            });
+            const result = await response.json();
+            if (result.status === "success") {
+                resBox.className = "resultBox success";
+                resBox.innerHTML = result.message;
+                resBox.style.display = "block";
+                document.getElementById("partnerForm").reset();
+            } else { throw new Error(result.message); }
+        } catch (err) {
+            resBox.className = "resultBox error-alert";
+            resBox.innerHTML = "Error sending invitation. Try again.";
+            resBox.style.display = "block";
+        }
+        btn.disabled = false; btn.innerText = "Send Onboarding & Consent Invitation";
     });
 </script>
 
