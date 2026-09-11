@@ -17,21 +17,21 @@
         }
 
         body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { width: 100%; max-width: 650px; padding: 20px; box-sizing: border-box; }
+        .container { width: 100%; max-width: 800px; padding: 20px; box-sizing: border-box; }
         .card { background: var(--card-bg); padding: 40px 35px; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); border: 1px solid var(--border-color); }
         .brand-header { text-align: center; margin-bottom: 24px; }
         .logo-img { width: 72px; height: 72px; object-fit: contain; border-radius: 50%; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15); margin-bottom: 12px; border: 2px solid #fff; }
         .brand-title { font-size: 22px; font-weight: 800; color: var(--primary); margin: 0; }
         .brand-subtitle { font-size: 13px; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
         .intro-box { background-color: var(--accent-light); border-radius: 8px; padding: 14px 16px; font-size: 13px; line-height: 1.5; color: #1e3a8a; margin-bottom: 24px; border-left: 4px solid var(--accent); }
-        h1, h2 { font-size: 18px; color: var(--primary); margin-bottom: 12px; font-weight: 700; }
+        h1, h2, h3 { font-size: 18px; color: var(--primary); margin-bottom: 12px; font-weight: 700; }
         .benefits-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
         .benefit-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--text-main); background: #fff; padding: 10px 12px; border-radius: 8px; border: 1px solid #f1f5f9; }
         .benefit-icon { background: #dbeafe; color: var(--accent); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; flex-shrink: 0; }
         .form-group { margin-bottom: 18px; }
         label { display: block; margin-bottom: 6px; font-weight: 600; color: var(--primary); font-size: 13px; }
-        input, select { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; box-sizing: border-box; font-size: 14px; background-color: #fff; color: var(--text-main); }
-        input:focus, select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; box-sizing: border-box; font-size: 14px; background-color: #fff; color: var(--text-main); }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
         .btn { background-color: var(--accent); color: white; border: none; padding: 14px; width: 100%; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 600; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); margin-top: 5px; }
         .btn:hover { background-color: #1d4ed8; }
         .btn-secondary { background-color: #e2e8f0; color: var(--primary); margin-top: 10px; }
@@ -40,6 +40,12 @@
         .link-btn { color: var(--accent); cursor: pointer; text-decoration: underline; font-weight: 500; background: none; border: none; padding: 0; }
         .section-box { background: #f8fafc; border: 1px solid var(--border-color); padding: 20px; border-radius: 10px; margin-top: 20px; }
         .locked-badge { background: #e2e8f0; color: #475569; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 15px; }
+        
+        /* Table Styles */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+        th, td { border: 1px solid var(--border-color); padding: 10px; text-align: left; }
+        th { background: #f1f5f9; color: var(--primary); }
+        
         .resultBox { margin-top: 15px; padding: 14px; border-radius: 8px; text-align: center; font-size: 14px; display: none; line-height: 1.5; }
         .success { background-color: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
         .error-alert { background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
@@ -130,7 +136,7 @@
             </div>
         </div>
 
-        <!-- VIEW 3: BANKER LOGIN VIEW (Mobile Number & PIN) -->
+        <!-- VIEW 3: BANKER LOGIN VIEW -->
         <div id="loginView" class="view">
             <h2>Banker Portal Login</h2>
             <form id="loginForm">
@@ -151,7 +157,7 @@
             </div>
         </div>
 
-        <!-- VIEW 4: BANKER DASHBOARD -->
+        <!-- VIEW 4: BANKER DASHBOARD (Includes Track Business & Rejection Routing) -->
         <div id="dashboardView" class="view">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                 <h2 id="dashWelcome" style="margin:0;">Banker Dashboard</h2>
@@ -160,6 +166,7 @@
             
             <div class="locked-badge" id="lockedBankBadge">Locked Bank: Loading...</div>
 
+            <!-- Log Business Form -->
             <div class="section-box">
                 <h3>Log New Business</h3>
                 <form id="businessForm">
@@ -176,9 +183,30 @@
                 <div id="busResult" class="resultBox"></div>
             </div>
 
+            <!-- Track Business & Rejection Routing Section -->
+            <div class="section-box">
+                <h3>Track Business & Rejections</h3>
+                <div style="overflow-x: auto;">
+                    <table id="businessTable">
+                        <thead>
+                            <tr>
+                                <th>Log ID</th>
+                                <th>Customer</th>
+                                <th>Status</th>
+                                <th>Action / Routing</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <tr><td colspan="4" style="text-align:center;">Loading logs...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Partner Recruitment Section -->
             <div id="partnerUnlockSection" class="section-box" style="display:none; border-color: #3b82f6; background:#eff6ff;">
                 <h3 style="color:#1d4ed8; margin-top:0;">🔓 Channel Partner Recruitment Unlocked</h3>
-                <p style="font-size:13px; color:#1e40af;">You have achieved your disbursement milestone. You can now recruit downline channel partners (Contact details remain hidden until they submit banking info).</p>
+                <p style="font-size:13px; color:#1e40af;">You have achieved your disbursement milestone. You can now recruit downline channel partners.</p>
                 <form id="partnerForm">
                     <div class="form-group">
                         <label for="partnerName">Channel Partner Name</label>
@@ -273,6 +301,7 @@
                     document.getElementById("lockedPartnerNotice").style.display = "block";
                 }
 
+                loadBusinessLogs();
                 switchView('dashboardView');
             } else {
                 resBox.className = "resultBox error-alert";
@@ -286,6 +315,68 @@
         }
         btn.disabled = false; btn.innerText = "Access Dashboard";
     });
+
+    async function loadBusinessLogs() {
+        const tbody = document.getElementById("tableBody");
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;">Loading logs...</td></tr>`;
+        
+        try {
+            const response = await fetch(SCRIPT_URL, {
+                method: "POST",
+                body: JSON.stringify({ action: "getLogs", bankerEmail: currentBankerEmail })
+            });
+            const result = await response.json();
+            
+            if (result.status === "success" && result.logs.length > 0) {
+                tbody.innerHTML = "";
+                result.logs.forEach(log => {
+                    let actionHtml = log.fileStatus;
+                    if (log.fileStatus === "Submitted") {
+                        actionHtml = `<span style="color:orange; font-weight:bold;">Under Processing</span><br>
+                                      <button class="link-btn" style="color:red; font-size:11px;" onclick="triggerRejection('${log.logId}')">Mark Rejected & Reroute</button>`;
+                    } else if (log.fileStatus === "Policy Rejected") {
+                        actionHtml = `<span style="color:red; font-weight:bold;">Rejected</span><br><small>${log.routingDecision || ''}</small>`;
+                    } else if (log.fileStatus === "Disbursed") {
+                        actionHtml = `<span style="color:green; font-weight:bold;">Disbursed 🚀</span>`;
+                    }
+                    
+                    tbody.innerHTML += `<tr>
+                        <td><code>${log.logId}</code></td>
+                        <td>${log.customerName}</td>
+                        <td>${log.fileStatus}</td>
+                        <td>${actionHtml}</td>
+                    </tr>`;
+                });
+            } else {
+                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#64748b;">No business files logged yet.</td></tr>`;
+            }
+        } catch (err) {
+            tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:red;">Failed to load logs.</td></tr>`;
+        }
+    }
+
+    async function triggerRejection(logId) {
+        const reason = prompt("Enter policy rejection reason (e.g., CIBIL drop / Income mismatch):");
+        if (!reason) return;
+        const decision = prompt("Enter alternative routing option (e.g., Reroute to HDFC / Direct DSA):");
+        if (!decision) return;
+
+        try {
+            const response = await fetch(SCRIPT_URL, {
+                method: "POST",
+                body: JSON.stringify({ action: "updateRejection", logId, rejectionReason: reason, routingDecision: decision })
+            });
+            const result = await response.json();
+            if (result.status === "success") {
+                alert("File successfully marked as rejected and routed!");
+                loadBusinessLogs();
+            } else {
+                alert("Failed to update.");
+            }
+        } catch (err) {
+            alert("Network error.");
+        }
+    }
 
     document.getElementById("businessForm").addEventListener("submit", async function(e) {
         e.preventDefault();
@@ -315,6 +406,7 @@
                 resBox.style.display = "block";
                 document.getElementById("businessForm").reset();
                 document.getElementById("loanTypeInput").value = lockedLoanType;
+                loadBusinessLogs(); // Refresh table
             } else { throw new Error(result.message); }
         } catch (err) {
             resBox.className = "resultBox error-alert";
