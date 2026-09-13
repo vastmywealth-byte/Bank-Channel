@@ -31,7 +31,8 @@
   }
   .network-motif{position:absolute; top:0; left:0; right:0; height:300px; z-index:0; opacity:.5; pointer-events:none;}
   .splash-top{ background:#fff; border-radius:0 0 40px 40px; padding:40px 24px 30px; text-align:center; box-shadow:0 4px 0 var(--gold); position:relative; z-index:1; }
-  .splash-logo{width:72px; height:72px; margin:0 auto 14px; border-radius:50%; background:var(--navy); display:flex; align-items:center; justify-content:center; color:var(--gold); font-weight:800; font-size:24px; box-shadow:0 0 0 6px rgba(212,167,65,.15);}
+  .splash-logo{width:72px; height:72px; margin:0 auto 14px; border-radius:50%; overflow:hidden; box-shadow:0 0 0 6px rgba(212,167,65,.15);}
+  .splash-logo img{width:100%; height:100%; object-fit:cover; display:block;}
   .splash-top h1{font-size:24px; margin:0; color:var(--navy); font-weight:800;}
   .splash-top .tagline{color:#2B5FCB; font-size:13px; font-weight:600; margin-top:4px; letter-spacing:.3px;}
   .auth-body{flex:1; padding:28px 22px 50px; max-width:420px; width:100%; margin:0 auto; position:relative; z-index:1;}
@@ -173,7 +174,7 @@
     </g>
   </svg>
   <div class="splash-top">
-    <div class="splash-logo">VMW</div>
+    <div class="splash-logo"><img src="vmw-logo.png" alt="VastMyWealth"></div>
     <h1>VastMyWealth</h1>
     <div class="tagline">Bank Channel Partner Portal</div>
   </div>
@@ -391,7 +392,7 @@
 
 <script>
 // ⚠️ SET THIS to your Bank Channel CRM Apps Script Web App URL
-var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbytDsEm2Z1_JD1Gpn-faYSdF1lVMIXxotMQ3qcB4P_7QIZC3juK8PZuhSTinkdlhASdEA/exec";
+var SCRIPT_URL = "https://script.google.com/macros/s/PASTE_BANK_CHANNEL_DEPLOYMENT_ID_HERE/exec";
 
 var SESSION = { bankerId: null, bankerEmail: null, mobile: null, pin: null };
 var MY_CODES = [];
