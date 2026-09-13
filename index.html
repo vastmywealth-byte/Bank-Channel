@@ -200,7 +200,7 @@
       <form id="requestCodeForm">
         <div class="form-group"><label>Official Bank Email ID</label><input type="email" id="reqEmail" required placeholder="name@bankdomain.com"></div>
         <div class="form-group"><label>Mobile Number</label><input type="tel" id="reqMobile" required pattern="[0-9]{10}" placeholder="9876543210"></div>
-        <div class="form-group"><label>Bank Name</label><input type="text" id="reqBank" required placeholder="e.g. HDFC Bank"></div>
+        <div class="form-group"><label>Bank Name</label><select id="reqBank" required><option value="">Loading banks...</option></select></div>
         <button type="submit" id="reqBtn" class="btn-primary">Send Request</button>
       </form>
       <div id="reqResult" class="msg-box"></div>
@@ -339,7 +339,7 @@
   <button class="close-x" onclick="closeSheet('submitCodeSheet','submitCodeBackdrop')">✕</button>
   <h3>Submit Your DSA Code</h3>
   <form id="submitCodeForm" class="light-form" style="background:var(--card); border-radius:12px; padding:16px;">
-    <div class="form-group"><label>Bank Name</label><input type="text" id="scBank" required></div>
+    <div class="form-group"><label>Bank Name</label><select id="scBank" required><option value="">Loading banks...</option></select></div>
     <div class="form-group">
       <label>Applicable Loan Type(s)</label>
       <div class="checkbox-grid">
@@ -411,6 +411,24 @@ function apiPost(payload) {
     });
 }
 function escapeHtml(s){ var d=document.createElement('div'); d.textContent=(s===undefined||s===null)?'':s; return d.innerHTML; }
+
+/* ---------------- BANK LIST (shared dropdown source) ---------------- */
+var BANK_LIST = [];
+function loadBankList(){
+  apiPost({ action:"getBankList" }).then(function(r){
+    var selects = [document.getElementById("reqBank"), document.getElementById("scBank")];
+    if (r.status === "success") {
+      BANK_LIST = r.banks || [];
+      var optionsHtml = '<option value="">Select bank...</option>' + BANK_LIST.map(function(b){ return '<option value="' + escapeHtml(b) + '">' + escapeHtml(b) + '</option>'; }).join("");
+      selects.forEach(function(sel){ if (sel) sel.innerHTML = optionsHtml; });
+    } else {
+      selects.forEach(function(sel){ if (sel) sel.innerHTML = '<option value="">Could not load bank list</option>'; });
+    }
+  }).catch(function(){
+    [document.getElementById("reqBank"), document.getElementById("scBank")].forEach(function(sel){ if (sel) sel.innerHTML = '<option value="">Could not load bank list</option>'; });
+  });
+}
+loadBankList();
 function showToast(msg, isError){ var t=document.getElementById("toast"); t.textContent=msg; t.className="toast"+(isError?" error":""); t.style.display="block"; setTimeout(function(){t.style.display="none";},3000); }
 function showView(id){ document.querySelectorAll("#authScreen .view").forEach(function(v){ v.classList.remove("active"); }); document.getElementById(id).classList.add("active"); document.querySelectorAll("#authScreen .msg-box").forEach(function(b){ b.style.display="none"; }); }
 function closeSheet(sheetId, backdropId){ document.getElementById(sheetId).style.display="none"; document.getElementById(backdropId).style.display="none"; }
