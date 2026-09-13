@@ -422,7 +422,9 @@ function loadBankList(){
       var optionsHtml = '<option value="">Select bank...</option>' + BANK_LIST.map(function(b){ return '<option value="' + escapeHtml(b) + '">' + escapeHtml(b) + '</option>'; }).join("");
       selects.forEach(function(sel){ if (sel) sel.innerHTML = optionsHtml; });
     } else {
-      selects.forEach(function(sel){ if (sel) sel.innerHTML = '<option value="">Could not load bank list</option>'; });
+      var errMsg = r.message || "Could not load bank list";
+      selects.forEach(function(sel){ if (sel) sel.innerHTML = '<option value="">' + escapeHtml(errMsg) + '</option>'; });
+      showToast(errMsg, true);
     }
   }).catch(function(){
     [document.getElementById("reqBank"), document.getElementById("scBank")].forEach(function(sel){ if (sel) sel.innerHTML = '<option value="">Could not load bank list</option>'; });
