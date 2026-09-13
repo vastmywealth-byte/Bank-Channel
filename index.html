@@ -311,6 +311,8 @@
         <div id="myTeamList"></div>
         <form id="recruitForm" class="light-form" style="margin-top:14px;">
           <div class="form-group"><label>Channel Partner Name</label><input type="text" id="recruitName" required></div>
+          <div class="form-group"><label>Mobile Number</label><input type="tel" id="recruitMobile" required></div>
+          <div class="form-group"><label>Email ID</label><input type="email" id="recruitEmail" required></div>
           <button type="submit" id="recruitBtn" class="btn-primary">Send Onboarding Invitation</button>
         </form>
         <div id="recruitResult" class="msg-box"></div>
@@ -318,8 +320,14 @@
 
       <div class="section-card" id="cpPoolCard" style="display:none;">
         <h3>VastMyWealth Partner Pool</h3>
-        <p class="desc">Unlocked at ₹10L/month disbursement. Names only — message a partner to introduce yourself; your contact details stay private on both sides.</p>
+        <p class="desc">Unlocked at ₹10L/month disbursement. Names only — message a partner to introduce yourself; your contact details stay private on both sides until they accept.</p>
         <div id="cpPoolList"></div>
+      </div>
+
+      <div class="section-card" id="agreedPoolCard" style="display:none;">
+        <h3>Partners Who've Accepted</h3>
+        <p class="desc">Contact details unlock once a partner accepts your request.</p>
+        <div id="agreedPoolList"></div>
       </div>
     </div>
 
@@ -393,7 +401,7 @@
 
 <script>
 // ⚠️ SET THIS to your Bank Channel CRM Apps Script Web App URL
-var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbytDsEm2Z1_JD1Gpn-faYSdF1lVMIXxotMQ3qcB4P_7QIZC3juK8PZuhSTinkdlhASdEA/exec";
+var SCRIPT_URL = "https://script.google.com/macros/s/PASTE_BANK_CHANNEL_DEPLOYMENT_ID_HERE/exec";
 
 var SESSION = { bankerId: null, bankerEmail: null, mobile: null, pin: null };
 var MY_CODES = [];
@@ -501,11 +509,12 @@ function enterApp(){
   if (SESSION.unlockedCPPool) { badge.style.display="inline-flex"; badge.innerHTML = '<span class="status-dot live"></span> Partner Pool Unlocked'; }
   else { badge.style.display="inline-flex"; badge.innerHTML = '<span class="status-dot"></span> Partner Pool locks at ₹10L/month'; }
   document.getElementById("cpPoolCard").style.display = SESSION.unlockedCPPool ? "block" : "none";
+  document.getElementById("agreedPoolCard").style.display = SESSION.unlockedCPPool ? "block" : "none";
 
   loadCodes();
   loadBusinessLogs();
   loadMyTeam();
-  if (SESSION.unlockedCPPool) loadCPPool();
+  if (SESSION.unlockedCPPool) { loadCPPool(); loadAgreedPoolCPs(); }
 }
 
 document.getElementById("logoutBtn").addEventListener("click", function(){
@@ -662,7 +671,7 @@ function populateCPPicker(){
 document.getElementById("recruitForm").addEventListener("submit", function(e){
   e.preventDefault();
   var btn = document.getElementById("recruitBtn"); btn.disabled = true; btn.textContent = "Sending...";
-  apiPost({ action:"recruitPartner", parentBankerId:SESSION.bankerId, partnerName:document.getElementById("recruitName").value })
+  apiPost({ action:"recruitPartner", parentBankerId:SESSION.bankerId, partnerName:document.getElementById("recruitName").value, partnerMobile:document.getElementById("recruitMobile").value, partnerEmail:document.getElementById("recruitEmail").value })
     .then(function(r){
       var box = document.getElementById("recruitResult"); box.className="msg-box "+(r.status==="success"?"success":"error"); box.textContent=r.message;
       if (r.status === "success") { document.getElementById("recruitForm").reset(); loadMyTeam(); }
@@ -694,6 +703,18 @@ function renderCPPool(){
 function requestCP(poolId){
   apiPost({ action:"requestCP", poolId:poolId, bankerId:SESSION.bankerId }).then(function(r){
     showToast(r.status === "success" ? "Interest sent" : (r.message || "Failed"), r.status !== "success");
+  });
+}
+
+function loadAgreedPoolCPs(){
+  apiPost({ action:"getMyAgreedPoolCPs", bankerId:SESSION.bankerId }).then(function(r){
+    var el = document.getElementById("agreedPoolList");
+    var partners = r.partners || [];
+    if (partners.length === 0) { el.innerHTML = '<div class="empty-state">No accepted partners yet.</div>'; return; }
+    el.innerHTML = partners.map(function(p){
+      return '<div class="team-row"><div><div class="team-name">' + escapeHtml(p.cpName) + '</div>' +
+        '<div class="team-status">' + escapeHtml(p.cpMobile) + ' · ' + escapeHtml(p.cpEmail) + '</div></div></div>';
+    }).join("");
   });
 }
 
