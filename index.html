@@ -392,7 +392,7 @@
 
 <script>
 // ⚠️ SET THIS to your Bank Channel CRM Apps Script Web App URL
-var SCRIPT_URL = "https://script.google.com/macros/s/PASTE_BANK_CHANNEL_DEPLOYMENT_ID_HERE/exec";
+var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbytDsEm2Z1_JD1Gpn-faYSdF1lVMIXxotMQ3qcB4P_7QIZC3juK8PZuhSTinkdlhASdEA/exec";
 
 var SESSION = { bankerId: null, bankerEmail: null, mobile: null, pin: null };
 var MY_CODES = [];
@@ -426,8 +426,10 @@ function loadBankList(){
       selects.forEach(function(sel){ if (sel) sel.innerHTML = '<option value="">' + escapeHtml(errMsg) + '</option>'; });
       showToast(errMsg, true);
     }
-  }).catch(function(){
-    [document.getElementById("reqBank"), document.getElementById("scBank")].forEach(function(sel){ if (sel) sel.innerHTML = '<option value="">Could not load bank list</option>'; });
+  }).catch(function(err){
+    var selects = [document.getElementById("reqBank"), document.getElementById("scBank")];
+    selects.forEach(function(sel){ if (sel) sel.innerHTML = '<option value="">Could not load bank list</option>'; });
+    showToast("Bank list error: " + err.message, true);
   });
 }
 loadBankList();
